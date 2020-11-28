@@ -29,7 +29,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   
     <script>
-        
+        // Runs Linear Non-Cleansed Model
+        //--------------------------------------------------------//
         $("#linearModelNonCleansedButton").click(function(e){
             // Saves windSpeed entered
             var windSpeed = document.getElementById("userInput").value
@@ -43,12 +44,37 @@
             else
             {
             e.preventDefault();
-            $.getJSON("/api/linearmodelnc", function(data){
+            $.getJSON("/api/linearmodelnc/" + windSpeed, function(data){
                 $('#userResult').val('Based on a Wind Speed of ' + windSpeed +', Expect power-output of: ' + data.value + 'KWh');
             
             });
             }
         });
+
+    
+        // Runs Linear Cleansed Model
+        //--------------------------------------------------------//
+        $("#linearModelCleansedButton").click(function(e){
+            // Saves windSpeed entered
+            var windSpeed = document.getElementById("userInput").value
+            
+            // Catches error if windSpeed Blank
+            // Adapted from https://www.w3resource.com/javascript/form/non-empty-field.php
+            if (windSpeed.length == 0)
+            { 
+                alert("Please enter Wind Speed");
+            }
+            else
+            {
+            e.preventDefault();
+            $.getJSON("/api/linearmodelc/" + windSpeed, function(data){
+                $('#userResult').val('Based on a Wind Speed of ' + windSpeed +', Expect power-output of: ' + data.value + 'KWh');
+            
+            });
+            }
+        });
+
+
     </script>
 
 
