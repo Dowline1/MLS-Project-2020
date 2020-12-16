@@ -29,21 +29,14 @@ def linearmodelc(windSpeed):
     return lm.c_linear_input(windSpeed)
 
 
-# Trains Sigmoid Model
-#@app.route('/api/trainSigmoid')
-#def trainSModel():
-
-#    return sm.trainSigmoidModel()
-
-
-# Route Wind Speed Request to Non-Cleansed Linear Model
-@app.route('/api/trainSigmoid/<string:windSpeed>')
+# Route Wind Speed Request to Sigmoid Neural Network Model
+@app.route('/api/sigmoidPrediction/<string:windSpeed>')
 def sigmoidModelPredict(windSpeed):
     
     # String must be converted to float as cannot pass natively
     # Insight from https://github.com/pallets/flask/issues/315
     windSpeed = float(windSpeed)
-    return sm.trainSigmoidModel(windSpeed)
+    return sm.sigmoidPrediction(windSpeed)
 
 
 if __name__ == "__main__":

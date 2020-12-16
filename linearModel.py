@@ -42,7 +42,7 @@ class LinearModel:
     def nc_linear_input(x):
         wind_speed = x
 
-        prediction = LinearModel.nc_linear_predict(wind_speed)
+        prediction = round(LinearModel.nc_linear_predict(wind_speed),2)
 
         return {"value": prediction}
 
@@ -70,7 +70,7 @@ class LinearModel:
     def c_linear_input(x):
         wind_speed = x
 
-        prediction = LinearModel.c_linear_predict(wind_speed)
+        prediction = round(LinearModel.c_linear_predict(wind_speed),2)
 
         return {"value": prediction}
 

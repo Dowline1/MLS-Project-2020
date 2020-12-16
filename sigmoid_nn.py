@@ -18,8 +18,7 @@ clean_data = clean_data.append(non_zero)
 # Sigmoid Neural Network Model Class
 #-------------------------------------------------------------------------------#
 class SigmoidModel:
-    def trainSigmoidModel(x):         
-    
+    def sigmoidPrediction(x):         
         # Train Model using Sigmoid Activation which most closely matches data
         model = kr.models.Sequential()
         
@@ -33,16 +32,11 @@ class SigmoidModel:
         # Fit the data/Train Model
         # Trys to get lowest cost score by small changes
         model.fit(clean_data['speed'], clean_data['power'], epochs=500, batch_size=10)
-   
-        # Make Prediction Using Wind Speed 20
+
+        # Make Prediction Using Wind Speed
         prediction = model.predict([x])
 
-        # Stores elemtent of array as variable
-        result = np.ndarray.item(prediction[0])
+        # Stores elemtent of array as variable so can be returned
+        result = round(np.ndarray.item(prediction[0]),2)
 
         return {"value": result}
-
-result = SigmoidModel.trainSigmoidModel(20)
-
-print(result)
-print(type(result))
